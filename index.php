@@ -76,12 +76,12 @@
                         <span>Projects</span>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="/contact">
                         <small class="mono accent">04.</small>
                         <span>Contact Me</span>
                     </a>
-                </li>
+                </li> -->
             </ul>
 
             <a target="_blank" href="https://www.linkedin.com/in/edward-blewitt-a1b257224/" class="button mobile-only flex align-center gap-s">
