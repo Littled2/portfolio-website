@@ -162,6 +162,7 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 3em;
+    min-height: 80vh;
 }
 
 .hero .half-width .mono {

@@ -96,7 +96,7 @@
             <img style="width: 1.2em; height: 1.2em; object-fit: contain;" src="/resources/images/icons/linkedin-accent.svg">
         </a>
 
-        <button class="mobile-menu-toggle" x-on:click="navOpen = !navOpen" x-bind:class="navOpen ? 'open' : ''">
+        <button class="mobile-menu-toggle" x-on:click="navOpen = !navOpen" x-bind:class="navOpen ? 'open' : ''" aria-pressed="false">
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
