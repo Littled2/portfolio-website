@@ -86,17 +86,17 @@
 
             <a target="_blank" href="https://www.linkedin.com/in/edward-blewitt/" class="button mobile-only flex align-center gap-s">
                 <span>View My LinkedIn</span>
-                <img style="width: 1.2em; height: 1.2em; object-fit: contain;" src="/resources/images/icons/linkedin-accent.svg">
+                <img alt="LinkedIn Logo" style="width: 1.2em; height: 1.2em; object-fit: contain;" src="/resources/images/icons/linkedin-accent.svg">
             </a>
 
         </nav>
 
         <a target="_blank" href="https://www.linkedin.com/in/edward-blewitt/" class="button flex align-center gap-s">
             <span>View My LinkedIn</span>
-            <img style="width: 1.2em; height: 1.2em; object-fit: contain;" src="/resources/images/icons/linkedin-accent.svg">
+            <img alt="LinkedIn Logo" style="width: 1.2em; height: 1.2em; object-fit: contain;" src="/resources/images/icons/linkedin-accent.svg">
         </a>
 
-        <button class="mobile-menu-toggle" x-on:click="navOpen = !navOpen" x-bind:class="navOpen ? 'open' : ''" aria-pressed="false">
+        <button class="mobile-menu-toggle" x-on:click="navOpen = !navOpen" x-bind:class="navOpen ? 'open' : ''" aria-label="Menu Toggle Button" aria-pressed="false">
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
