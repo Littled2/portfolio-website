@@ -60,19 +60,19 @@
         <nav class="flex-1 nav" x-bind:class="navOpen ? 'open' : ''">
             <ul class="nav-links">
                 <li>
-                    <a href="/#about-me">
+                    <a href="/#about-me" x-on:click="navOpen = false">
                         <small class="mono accent">01.</small>
                         <span>About Me</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/#what-i-do">
+                    <a href="/#what-i-do" x-on:click="navOpen = false">
                         <small class="mono accent">02.</small>
                         <span>What I Do</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/#featured-projects">
+                    <a href="/#featured-projects" x-on:click="navOpen = false">
                         <small class="mono accent">03.</small>
                         <span>Projects</span>
                     </a>
