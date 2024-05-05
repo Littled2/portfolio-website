@@ -49,7 +49,7 @@
 
 
 </head>
-<body>
+<body x-data="{ navOpen: false }">
 
     <header>
     <a href="/" class="logo">
@@ -85,7 +85,7 @@
                 </li> -->
             </ul>
 
-            <a target="_blank" href="https://www.linkedin.com/in/edward-blewitt/" class="button mobile-only flex align-center gap-s">
+            <a target="_blank" href="https://www.linkedin.com/in/edward-blewitt/" class="button m-show-flex align-center gap-s">
                 <span>View My LinkedIn</span>
                 <img alt="LinkedIn Logo" style="width: 1.2em; height: 1.2em; object-fit: contain;" src="/resources/images/icons/linkedin-accent.svg">
             </a>

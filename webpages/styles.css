@@ -1,0 +1,12 @@
+.project-link {
+    padding: 18px 24px;
+    border-radius: 12px;
+    border: 2px solid var(--secondary-colour);
+    width: max-content;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.project-link:hover {
+    border-color: var(--text-light-colour);
+}
