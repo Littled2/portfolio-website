@@ -547,14 +547,14 @@ p {
 
 @media screen and (max-width: 1400px) {
     :root {
-        --page-padding-left: 24px;
-        --page-padding-right: 24px;
+        --page-padding-left: 42px;
+        --page-padding-right: 42px;
     }
 }
 
 
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 800px) {
     .mobile-only {
         display: initial;
     }
