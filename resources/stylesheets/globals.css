@@ -4,6 +4,7 @@
 :root {
     --primary-colour: #131313;
     --secondary-colour: #1a1a1a;
+    /* --secondary-colour: #343434; */
     --accent-colour: #ff9f1b;
 
     --text-strong-colour: #dbdbdb;
