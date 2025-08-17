@@ -221,6 +221,19 @@ footer {
     background-color: white;
 }
 
+.activity .small-logos {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-small);
+}
+
+.activity .small-logos .logo {
+    max-width: 300px;
+    max-height: 100px;  
+    width: min-content;
+}
+
+
 .activity > .info {
     transform: translateX(25px);
     display: flex;
@@ -438,7 +451,6 @@ p {
     z-index: 0;
 }
 
-
 .logo {
     font-size: 3rem;
     display: flex;
@@ -651,6 +663,7 @@ p {
         width: 100%;
         height: unset;
         margin-bottom: 14px;
+        max-height: 150px;
     }
     .activity.reverse {
         flex-direction: column-reverse;

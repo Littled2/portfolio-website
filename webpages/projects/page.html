@@ -2,42 +2,224 @@ title: 💡 Projects
 
 ==================================
 
-<section>
+<section
+    x-data="{
+        all_projects: [],
+        query: '',
+        selected_tag: 'all_tags',
+        tags: [],
+        popupOpen: null,
+        loading: true,
+        get matching_projects() {
+            return this.all_projects.filter(p => p?.title?.toLowerCase().includes(this.query.toLowerCase())).filter(p => this.selected_tag === 'all_tags' || p?.tags?.includes(this.selected_tag))
+        },
+        closePopup() {
+            console.log('running close')
+            $refs.popup.classList.remove('active')
+            $refs.popupWrapper.style.pointerEvents = 'none'
+            $refs.popup.style.opacity = '0'
 
-    <div>
-        <div class="project-link">
-            <div class="flex gap-s space-between">
-                <p>Application Tracker</p>
-                <p class="text-strong">--></p>
-            </div>
-            <small class="mono accent">Styled to look like the Bloomberg Terminal</small>
+            setTimeout(() => {
+                $refs.popup.style.top = ''
+                $refs.popup.style.left = ''
+                $refs.popup.style.width = ''
+                $refs.popup.style.height = ''
+            }, 500)
+        },
+        init() {
+            this.loading = true
+            fetch('/backend/GET-projects.php')
+            .then(res => res.json())
+            .then(projects => {
+                this.all_projects = projects
+                this.tags = Array.from(
+                    new Set(
+                        projects.reduce((acc, p) => {
+                            acc.push(...(Array.isArray(p?.tags) ? p.tags : []));
+                            return acc;
+                        }, [])
+                    )
+                )
+                console.log(this.tags)
+                this.loading = false
+            })
+            .catch(err => {
+                console.error(err)
+                this.loading = false
+            })
+        }
+    }"
+    class="flex col gap-m"
+>
+
+    <div class="top-hero-card">
+        <div class="flex align-center gap-s">
+            <h1 class="accent">{</h1>
+            <h2 class="page-heading">My Projects</h2>
+            <h1 class="accent">}</h1>
         </div>
+        <!-- <i>Dream in code</i> -->
     </div>
 
-    <div>
-        <h2 class="heading section-heading" id="what-i-do">
-            <span class="number">03.</span>
-            <span>My Projects</span>
-            <hr>
-        </h2>
-    </div>
-
-    <i>Dream in code</i>
 
     <div class="flex gap-s wrap">
-        <input type="text">
-        <select class="select">
-            Languages
-            <option value="">Javascript</option>
-            <option value="">HTML</option>
-            <option value="">CSS</option>
-            <option value="">Java</option>
-            <option value=""></option>
+        <input type="text" class="search" x-model="query" placeholder="Search for something" >
+        <select class="select" x-model="selected_tag">
+            <option value="all_tags">All projects</option>
+            <template x-for="tag in tags">
+                <option :value="tag" x-text="tag"></option>
+            </template>
         </select>
     </div>
 
+    <div class="text-center flex justify-center" x-show="loading">
+        <br><br>
+        <p>Loading projects...</p>
+    </div>
+
+    <div class="text-center flex justify-center" x-show="matching_projects.length === 0 && !loading">
+        <br><br>
+        <p>No projects</p>
+    </div>
+
+    <div class="cards">
+
+        <!-- Example -->
+
+        <template x-for="project in matching_projects">
+
+            <div
+                x-data="{
+                    openPopup(e) {
+
+                        popupOpen = project
+
+                        const popupWrapper = $refs.popupWrapper
+                        const popup = $refs.popup
+
+                        const rect = e.currentTarget.getBoundingClientRect()
+
+                        // Set initial position and size
+                        popup.style.top = `${rect.top}px`
+                        popup.style.left = `${rect.left}px`
+                        popup.style.width = `${rect.width}px`
+                        popup.style.height = `${rect.height}px`
+                        popup.style.opacity = '1'
+                        popupWrapper.style.pointerEvents = 'auto'
+
+                        // Animate to full screen
+                        requestAnimationFrame(() => {
+                            popup.classList.add('active')
+                        })
+                    }
+                }"
+                @click="openPopup($event)"
+                class="card project"
+            >
+                <div class="project-info">
+                    <div class="project-top">
+                        <div class="flex-1">
+                            <h3 class="name" x-text="project?.title"></h3>
+                            <small class="type" x-text="project?.subtitle"></small>
+                        </div>
+                    </div>
+                    <div class="thumb">
+                        <img
+                            x-show="project?.images?.length > 0"
+                            :alt="'Project thumbnail for ' + project?.title"
+                            :src="'/backend/GET-project-image.php?id=' + project?.id + '&fileID=' + project?.images[0].fileID + '&fileType=' + project?.images[0].name.split('.')[1]"
+                        >
+                        <div class="no-img" x-show="!project?.images || project?.images?.length === 0">
+                            <div href="/" class="logo">
+                                <span class="accent">{</span>
+                                <span class="logo-text">eb.</span>
+                                <span class="accent">}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="technologies">
+                    <template x-for="tech in project?.tags">
+                        <span x-text="tech"></span>
+                    </template>
+                </div>
+            </div>
+            
+        </template>
+
+        <div
+            x-ref="popupWrapper"
+            class="popup-wrapper"
+            style="pointer-events: none;"
+            @click="if($event.target === $refs.popupWrapper) { closePopup() }"
+        >
+            <div x-ref="popup" class="project popup">
+
+                <div class="project-info">
+                    <div class="project-top">
+                        <div class="flex-1 flex space-between">
+                            <div>
+                                <h3 class="name" x-text="popupOpen?.title"></h3>
+                                <small class="type" x-text="popupOpen?.subtitle"></small>
+                            </div>
+                            <button
+                                class="close"
+                                @click="closePopup()"
+                            >
+                                <img src="/resources/images/icons/close.svg" alt="Close popup icon" class="icon">
+                            </button>
+                        </div>
+                    </div>
+                    <div x-show="popupOpen?.images?.length > 0" class="thumb">
+                        <img :alt="'Project thumbnail for ' + popupOpen?.title" :src="'/backend/GET-project-image.php?id=' + popupOpen?.id + '&fileID=' + popupOpen?.images[0].fileID + '&fileType=' + popupOpen?.images[0].name.split('.')[1]">
+                    </div>
+                    <div class="technologies">
+                        <template x-for="tech in popupOpen?.tags">
+                            <span x-text="tech"></span>
+                        </template>
+                    </div>
+                    <p>
+                        <pre style="white-space: break-word; text-wrap: wrap;" x-text="popupOpen?.info"></pre>
+                    </p>
+                </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </section>
 
-<section>
+<!-- <script>
 
-</section>
+    window.onload = async () => {
+
+        window.projects = await (await fetch("/resources/projects.json")).json()
+
+        document.querySelector(".search").addEventListener("input", e => console.log(searchProjects(e.target.value)))
+    }
+
+    // Returns matching projects
+    function searchProjects(query) {
+
+        const parsed_query = query.toLowerCase().trim()
+
+        let matches = []
+
+        window.projects.forEach(p => {
+
+            if( 
+                p.name.toLowerCase().includes(parsed_query)
+                || p.desc.toLowerCase().includes(parsed_query)
+                || p.name.toLowerCase().includes(parsed_query)
+                // || p.technologies.filter(t => t.toLowerCase().includes(parsed_query)).length > 0
+            ) {
+                matches.push(p)   
+            }
+
+            return matches
+        })
+    }
+
+</script> -->

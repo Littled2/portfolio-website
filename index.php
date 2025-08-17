@@ -68,13 +68,14 @@
                 <li>
                     <a href="/#what-i-do" x-on:click="navOpen = false">
                         <small class="mono accent">02.</small>
-                        <span>What I Do</span>
+                        <span>Experience</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/#featured-projects" x-on:click="navOpen = false">
+                    <a href="/projects" x-on:click="navOpen = false">
                         <small class="mono accent">03.</small>
                         <span>Projects</span>
+                        <span class="mono" style="padding: 2px 6px; border-radius: 1000px; background-color: var(--accent-colour); color: var(--primary-colour); font-size: 0.8rem;">new</span>
                     </a>
                 </li>
                 <!-- <li>
@@ -85,14 +86,14 @@
                 </li> -->
             </ul>
 
-            <a target="_blank" href="https://www.linkedin.com/in/edward-blewitt/" class="button m-show-flex align-center gap-s">
+            <a target="_blank" href="https://apps.edward-blewitt.uk/backend/api/urls/GET-goto-url.php?id=68a06bcbd6770" class="button m-show-flex align-center gap-s">
                 <span>View My LinkedIn</span>
                 <img alt="LinkedIn Logo" style="width: 1.2em; height: 1.2em; object-fit: contain;" src="/resources/images/icons/linkedin-accent.svg">
             </a>
 
         </nav>
 
-        <a target="_blank" href="https://www.linkedin.com/in/edward-blewitt/" class="button flex align-center gap-s">
+        <a target="_blank" href="https://apps.edward-blewitt.uk/backend/api/urls/GET-goto-url.php?id=68a06bcbd6770" class="button flex align-center gap-s">
             <span>View My LinkedIn</span>
             <img alt="LinkedIn Logo" style="width: 1.2em; height: 1.2em; object-fit: contain;" src="/resources/images/icons/linkedin-accent.svg">
         </a>

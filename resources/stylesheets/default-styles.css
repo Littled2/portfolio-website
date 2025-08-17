@@ -54,6 +54,10 @@ p {
     line-height: 180%;
 }
 
+pre {
+    font-family: inherit;
+}
+
 a {
     color: inherit;
     cursor: pointer;
@@ -70,4 +74,9 @@ ul, ol {
 
 button {
     cursor: pointer;
+}
+
+input,
+button {
+    font-family: inherit;
 }
