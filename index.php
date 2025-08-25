@@ -21,6 +21,9 @@
     <!-- Remove this if you don't wish to use Alpine JS across you webpages -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
+    <!-- Add Rapid Web Analytics -->
+    <script src="https://apps.edward-blewitt.uk/resources/web-analytics/analytics_v1.0.js" onload="attach_rapid_web_analytics('68abe547643c6')"></script>
+
 
     <!-- If the title property is set, insert here. -->
     <?php echo $page->get_property('title') ?>
