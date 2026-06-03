@@ -112,7 +112,7 @@
 
 
     <footer>
-        <p class="mono">Congratulations! You reached the bottom</p>
+        <p class="mono">Congratulations! You reached the botto</p>
     </footer>
 
 
