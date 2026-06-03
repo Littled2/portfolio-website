@@ -1,3 +1,5 @@
 env.json
 
 /resources/images/project-images
+
+docker-compose.override.yml
