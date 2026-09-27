@@ -9,4 +9,9 @@ RUN sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
 # Copy site into Apache's webroot
 COPY . /var/www/html/
 
+# Ensure the image cache directory exists and is writable by the web server
+RUN mkdir -p /var/www/html/resources/images/project-images \
+    && chown -R www-data:www-data /var/www/html/resources \
+    && chmod -R 775 /var/www/html/resources
+
 EXPOSE 80
